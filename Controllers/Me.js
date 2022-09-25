@@ -32,9 +32,13 @@ export const getMe = catchAsyncErrors(async function (req, res, next) {
   });
 });
 export const updateMe = catchAsyncErrors(async function (req, res, next) {
- 
-if(req.body.skillsCube){
+  
+  
+if(req.body.skillCube){
+
+
   for (let i = 0; i <= req.body.skillCube.length - 1; i++) { 
+    console.log(!req.body.skillCube[i].url.startsWith("http"));
             if (!req.body.skillCube[i].url.startsWith("http")) {
     
           let del = await cloudinary.v2.uploader.destroy(
