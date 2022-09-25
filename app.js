@@ -7,6 +7,7 @@ import TestimonialRoutes from './Routes/testimonial.js';
 import ErrorMiddleware from './Middlewares/ErrorMiddleware.js';
 import  bodyParser from 'body-parser';
 import path from 'path';
+import cors from 'cors';
 const app = express();
 // app.enable("trust proxy");
 
@@ -15,6 +16,9 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors({
+    origin: ['http://localhost:3000' , 'https://waleed-tahir.netlify.app'],
+}))
 
 app.use(MeRoutes)
 app.use(ProjectsRoutes)
