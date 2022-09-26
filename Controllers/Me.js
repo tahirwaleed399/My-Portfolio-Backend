@@ -15,10 +15,10 @@ export const Login = catchAsyncErrors(async function (req, res, next) {
     let token = await jwt.sign({ _id: me._id }, process.env.PRIVATE_KEY, {
       expiresIn: process.env.JSON_WEB_TOKEN_EXPIRE_TIME,
     });
-    res.status(200).cookie("token", token, { httpOnly: true, secure : req.secure ||
-      req.headers['x-forwarded-proto'] === 'https' ||
-      req.headers['x-forwarded-proto'] === 'http' , sameSite:'none'  }).json({
+    res.status(200).cookie("token", token, { httpOnly: true  }).json({
       success: true,
+      
+    token
       
     });
   } else {
