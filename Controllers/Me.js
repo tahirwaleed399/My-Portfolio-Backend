@@ -17,8 +17,9 @@ export const Login = catchAsyncErrors(async function (req, res, next) {
     });
     res.status(200).cookie("token", token, { httpOnly: true, secure : req.secure ||
       req.headers['x-forwarded-proto'] === 'https' ||
-      req.headers['x-forwarded-proto'] === 'http'  }).json({
+      req.headers['x-forwarded-proto'] === 'http' , sameSite:'none'  }).json({
       success: true,
+      
     });
   } else {
     next(new ErrorHandler(401, "Email Or Passoword is Invalid"));
